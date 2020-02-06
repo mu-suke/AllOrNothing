@@ -28,7 +28,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<MySlider> _sliderList = [];
+  List<MySlider> _sliderList = [
+    MySlider( title: 'hoge', value: 40)
+  ];
 
   Future<MySlider> _addSlider(BuildContext context) {
     TextEditingController _textController = TextEditingController();
@@ -42,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     void _startSlider(double e) => setState(() { _startValue = e; });
     void _endSlider(double e) => setState(() { _endValue = e; });
-    showDialog(
+    return showDialog(
       context: context,
       builder: (_) {
         return AlertDialog(
@@ -103,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             for (int i = 0; i < _sliderList.length;i++)
               Text(
-                "title: ${_sliderList[i].title}",
+                "title: ${_sliderList[i].title} \n value: ${_sliderList[i].value}",
               ),
           ],
         ),
@@ -111,11 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addSlider(context).then((onValue){
-            SnackBar mySnackBar = SnackBar(content: Text("Hello $onValue"));
-            Scaffold.of(context).showSnackBar(mySnackBar);
-            setState(() {
-//              _sliderList.add(onValue);
-            });
+            _sliderList.add(onValue);
+            setState(() {});
           });
         },
         tooltip: 'Increment',
