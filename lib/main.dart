@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'mySliderClass.dart';
+import 'package:all_or_nothing_slider/components/mySliderComponent.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +21,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-
   final String title;
 
   @override
@@ -28,22 +28,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<MySlider> _sliderList = [
-    MySlider( title: 'hoge', value: 40)
-  ];
+  List<MySlider> _sliderList = [];
 
   Future<MySlider> _addSlider(BuildContext context) {
     TextEditingController _textController = TextEditingController();
-    double _value = 0.0;
-    double _startValue = 0.0;
-    double _endValue = 0.0;
-    int displayValue = 0;
-    void _changeSlider(double e) => setState(() {
-      _value = e;
-      displayValue = e.toInt();
-    });
-    void _startSlider(double e) => setState(() { _startValue = e; });
-    void _endSlider(double e) => setState(() { _endValue = e; });
     return showDialog(
       context: context,
       builder: (_) {
@@ -54,18 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TextField(
                 controller: _textController,
               ),
-              Slider(
-                label: '$_value',
-                min: 0,
-                max: 100,
-                value: _value,
-                activeColor: Colors.orange,
-                inactiveColor: Colors.blueAccent,
-                divisions: 100,
-                onChanged: _changeSlider,
-                onChangeStart: _startSlider,
-                onChangeEnd: _endSlider,
-              )
+              MySliderComponent(),
             ],
           ),
           actions: <Widget>[
@@ -79,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 final MySlider _newSlider = MySlider(
                   title: _textController.text.toString(),
-                  value: displayValue,
+                  value: 100,
                 );
                 Navigator.of(context).pop(_newSlider);
               },
@@ -103,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'All or Nothing?'
             ),
+            MySliderComponent(),
             for (int i = 0; i < _sliderList.length;i++)
               Text(
                 "title: ${_sliderList[i].title} \n value: ${_sliderList[i].value}",
@@ -113,8 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addSlider(context).then((onValue){
-            _sliderList.add(onValue);
-            setState(() {});
+            if(onValue != null) {
+              _sliderList.add(onValue);
+              setState(() {});
+            }
+
           });
         },
         tooltip: 'Increment',
