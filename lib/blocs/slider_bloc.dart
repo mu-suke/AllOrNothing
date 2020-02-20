@@ -1,17 +1,24 @@
 import 'dart:async';
 import 'dart:math' show Random;
 
+import 'package:all_or_nothing_slider/mySliderClass.dart';
+
 class SliderBloc {
   final _startController = StreamController<void>();
   final _calcController = StreamController<int>();
   final _outputController = StreamController<String>();
   final _btnController = StreamController<bool>();
+  final _outputSliderController = StreamController<MySlider>();
 
   // 入力用sinkのGetter
   StreamSink<void> get start => _startController.sink;
 
+  // sliderの値を入れるGetter
+  StreamSink<List<MySlider>> get slider => _outputSliderController.sink;
+
+
   // 出力用streamのGetter
-  Stream<String> get onAdd => _outputController.stream;
+  Stream<MySlider> get onAdd => _outputSliderController.stream;
   Stream<bool> get onToggle => _btnController.stream;
 
   static const _repeat = 6;
@@ -20,7 +27,7 @@ class SliderBloc {
 
   SliderBloc() {
     // スタートボタンが押されるのを待つ
-    _startController.stream.listen((_) => _start());
+    _startController.stream.listen((MySlider slider) => _start);
 
     // 秒数が通知されるのを待つ
     _calcController.stream.listen((count) => _calc(count));
@@ -29,15 +36,8 @@ class SliderBloc {
     _btnController.sink.add(true);
   }
 
-  void _start() {
-    _sum = 0;
-    _outputController.sink.add('');
-    _btnController.sink.add(false);
-
-    // 1秒ごとに秒数を通知
-    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
-      _calcController.sink.add(t.tick);
-    });
+  void _start(MySlider _slider) {
+    slider.add(_slider);
   }
 
   void _calc(int count) {
@@ -57,5 +57,6 @@ class SliderBloc {
     _calcController.close();
     _outputController.close();
     _btnController.close();
+    _outputSliderController.close();
   }
 }
