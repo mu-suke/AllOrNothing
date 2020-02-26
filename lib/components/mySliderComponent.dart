@@ -21,11 +21,11 @@ class _MySliderComponentState extends State<MySliderComponent> {
         padding: const EdgeInsets.all(50.0),
         child: Column(
           children: <Widget>[
-            Center(child:Text("現在の値：${_value}")),
-            Center(child:Text("開始時の値：${_startValue}")),
-            Center(child:Text("終了時の値：${_endValue}")),
+            Center(child:Text("現在の値：$_value")),
+            Center(child:Text("開始時の値：$_startValue")),
+            Center(child:Text("終了時の値：$_endValue")),
             new Slider(
-              label: '${_value}',
+              label: '$_value',
               min: 0,
               max: 100,
               value: _value,
