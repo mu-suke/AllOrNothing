@@ -26,36 +26,63 @@ class _MyHomeState extends State<MyHome> {
   List<MySlider> _sliderList = [];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Text("text"),
-          if ( _sliderList.isNotEmpty )
-            ListView.builder(
-              itemCount: _sliderList.length,
-              itemBuilder: (BuildContext context, int index){
-                return Column(
-                  children: <Widget>[
-                    Text(_sliderList[index].title),
-                    Text(_sliderList[index].value.toString()),
-                  ],
-                );
-              },
-            ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _addSlider(context).then((onValue){
-            setState(() {
-              _sliderList.add(onValue);
+    if ( _sliderList.isNotEmpty ) {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("text"),
+              ListView.builder(
+                itemCount: _sliderList.length,
+                itemBuilder: (BuildContext context, int index){
+                  return Column(
+                    children: <Widget>[
+                      Text(_sliderList[index].title),
+                      Text(_sliderList[index].value.toString()),
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _addSlider(context).then((onValue){
+              setState(() {
+                _sliderList.add(onValue);
+              });
             });
-          });
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+          },
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        ),
+      );
+    }
+    else {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("Slider list is empty."),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _addSlider(context).then((onValue){
+              setState(() {
+                _sliderList.add(onValue);
+              });
+            });
+          },
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        ),
+      );
+    }
   }
 
   Future<MySlider> _addSlider(BuildContext context) {
