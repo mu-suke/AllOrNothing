@@ -31,23 +31,14 @@ class _MyHomeState extends State<MyHome> {
     if ( _sliderList.isNotEmpty ) {
       return Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("text"),
-              ListView.builder(
-                itemCount: _sliderList.length,
-                itemBuilder: (BuildContext context, int index){
-                  return Column(
-                    children: <Widget>[
-                      Text(index.toString()),
-                      // Text(_sliderList[index].title),
-                      // Text(_sliderList[index].value.toString()),
-                    ],
-                  );
-                },
-              ),
-            ],
+          child: ListView.builder(
+            itemCount: _sliderList.length,
+            itemBuilder: (BuildContext context, int index){
+              return ListTile(
+                title: Text(_sliderList[index].title),
+                subtitle: Text('${_sliderList[index].value}'),
+              );
+            },
           ),
         ),
         floatingActionButton: FloatingActionButton(
