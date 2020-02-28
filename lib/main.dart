@@ -23,7 +23,9 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
-  List<MySlider> _sliderList = [];
+  List<MySlider> _sliderList = [
+    MySlider(title: 'hogehoge', value: 40),
+  ];
   @override
   Widget build(BuildContext context) {
     if ( _sliderList.isNotEmpty ) {
@@ -38,8 +40,9 @@ class _MyHomeState extends State<MyHome> {
                 itemBuilder: (BuildContext context, int index){
                   return Column(
                     children: <Widget>[
-                      Text(_sliderList[index].title),
-                      Text(_sliderList[index].value.toString()),
+                      Text(index.toString()),
+                      // Text(_sliderList[index].title),
+                      // Text(_sliderList[index].value.toString()),
                     ],
                   );
                 },
