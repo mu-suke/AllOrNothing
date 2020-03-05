@@ -5,7 +5,10 @@ import 'mySliderClass.dart';
 class AddSliderPage extends StatefulWidget {
   final MySlider mySlider;
   final MySlider _newSlider = MySlider.newSlider();
-  AddSliderPage({Key key, this.mySlider});
+  AddSliderPage({Key key, this.mySlider}){
+    _newSlider.title = mySlider.title;
+    _newSlider.value = mySlider.value;
+  }
   @override
   _AddSliderPageState createState() => _AddSliderPageState();
 }
