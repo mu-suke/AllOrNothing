@@ -80,9 +80,9 @@ class _MyHomeState extends State<MyHome> {
       );
     }
   }
-  _moveToAddSliderView(BuildContext context, MySlider slider) => Navigator.push(
+  _moveToAddSliderView(BuildContext context) => Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => AddSliderPage(todo: todo))
+      MaterialPageRoute(builder: (context) => AddSliderPage())
   );
 
   Future<MySlider> _addSlider(BuildContext context) {
