@@ -1,6 +1,11 @@
+import 'package:all_or_nothing_slider/mySliderClass.dart';
 import 'package:flutter/material.dart';
+import 'mySliderClass.dart';
 
 class AddSliderPage extends StatefulWidget {
+  final MySlider mySlider;
+  final MySlider _newSlider = MySlider.newSlider();
+  AddSliderPage({Key key, @required this.mySlider})
   @override
   _AddSliderPageState createState() => _AddSliderPageState();
 }

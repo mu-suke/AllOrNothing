@@ -1,3 +1,4 @@
+import 'package:all_or_nothing_slider/addSliderPage.dart';
 import 'package:flutter/material.dart';
 import 'mySliderClass.dart';
 void main() => runApp(MyApp());
@@ -66,11 +67,12 @@ class _MyHomeState extends State<MyHome> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _addSlider(context).then((onValue){
-              setState(() {
-                _sliderList.add(onValue);
-              });
-            });
+            _moveToAddSliderView(context);
+//            _addSlider(context).then((onValue){
+//              setState(() {
+//                _sliderList.add(onValue);
+//              });
+//            });
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -78,6 +80,10 @@ class _MyHomeState extends State<MyHome> {
       );
     }
   }
+  _moveToAddSliderView(BuildContext context, MySlider slider) => Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddSliderPage(todo: todo))
+  );
 
   Future<MySlider> _addSlider(BuildContext context) {
     TextEditingController _textController = TextEditingController();

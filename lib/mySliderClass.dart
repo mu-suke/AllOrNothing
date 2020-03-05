@@ -1,10 +1,14 @@
 class MySlider {
-  const MySlider({
+  MySlider({
     this.title,
     this.value
   });
 
-  final String title;
+  String title;
+  int value;
 
-  final int value;
+  MySlider.newSlider() {
+    title = '';
+    value = 0;
+  }
 }
