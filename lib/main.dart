@@ -44,12 +44,19 @@ class _MyHomeState extends State<MyHome> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _addSlider(context).then((onValue){
+          onPressed: () async {
+            final MySlider _newSlider = await Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (context) {
+                      return AddSliderPage();
+                    }
+                )
+            );
+            if (_newSlider != null) {
               setState(() {
-                _sliderList.add(onValue);
+                _sliderList.add(_newSlider);
               });
-            });
+            }
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -67,8 +74,14 @@ class _MyHomeState extends State<MyHome> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _moveToAddSliderView(context);
+          onPressed: () async {
+            final MySlider _newSlider = await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return AddSliderPage();
+                }
+              )
+            );
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -80,71 +93,6 @@ class _MyHomeState extends State<MyHome> {
       context,
       MaterialPageRoute(builder: (context) => AddSliderPage())
   );
-
-  Future<MySlider> _addSlider(BuildContext context) {
-    TextEditingController _textController = TextEditingController();
-    double _value = 0.0;
-    double _startValue = 0.0;
-    double _endValue = 0.0;
-
-    void _changeSlider(double e) => setState(() { _value = e; });
-    void _startSlider(double e) => setState(() { _startValue = e; });
-    void _endSlider(double e) => setState(() { _endValue = e; });
-    return showDialog(
-      context: context,
-      builder: (_) {
-        return AlertDialog(
-          title: Text("新規スライダーを作成"),
-          content: Column(
-            children: <Widget>[
-              TextField(
-                controller: _textController,
-              ),
-              Container(
-                  padding: const EdgeInsets.all(50.0),
-                  child: Column(
-                    children: <Widget>[
-                      Center(child:Text("現在の値：$_value")),
-                      Center(child:Text("開始時の値：$_startValue")),
-                      Center(child:Text("終了時の値：$_endValue")),
-                      new Slider(
-                        label: '$_value',
-                        min: 0,
-                        max: 100,
-                        value: _value,
-                        activeColor: Colors.orange,
-                        inactiveColor: Colors.blueAccent,
-                        divisions: 100,
-                        onChanged: _changeSlider,
-                        onChangeStart: _startSlider,
-                        onChangeEnd: _endSlider,
-                      )
-                    ],
-                  )
-              ),
-            ],
-          ),
-          actions: <Widget>[
-            // ボタン領域
-            FlatButton(
-              child: Text("Cancel"),
-              onPressed: () => Navigator.pop(context),
-            ),
-            FlatButton(
-              child: Text("OK"),
-              onPressed: () {
-                final MySlider _newSlider = MySlider(
-                  title: _textController.text.toString(),
-                  value: _value.toInt(),
-                );
-                Navigator.of(context).pop(_newSlider);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }
 
 

@@ -4,17 +4,12 @@ import 'package:flutter/material.dart';
 import 'mySliderClass.dart';
 
 class AddSliderPage extends StatefulWidget {
-  final MySlider mySlider;
-  final MySlider _newSlider = MySlider.newSlider();
-  AddSliderPage({Key key, this.mySlider}){
-    _newSlider.title = mySlider.title;
-    _newSlider.value = mySlider.value;
-  }
   @override
   _AddSliderPageState createState() => _AddSliderPageState();
 }
 
 class _AddSliderPageState extends State<AddSliderPage> {
+  final MySlider _newSlider = MySlider.newSlider();
   TextEditingController _textController = TextEditingController();
   double _value = 0.0;
   double _startValue = 0.0;
@@ -65,8 +60,21 @@ class _AddSliderPageState extends State<AddSliderPage> {
                   ],
                 ),
               ),
+              RaisedButton.icon(
+                  onPressed: () {
+                    _newSlider.title = _textController.toString();
+                    _newSlider.value = _value.toInt();
+                    Navigator.of(context).pop(_newSlider);
+                  },
+                  icon: Icon(
+                    Icons.check_circle_outline,
+                    color: Colors.white,
+                  ),
+                  label: Text("決定")
+              )
             ],
-          )),
+          ),
+      ),
     );
   }
 }
