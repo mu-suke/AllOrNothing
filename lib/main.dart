@@ -1,4 +1,5 @@
 import 'package:all_or_nothing_slider/addSliderPage.dart';
+import 'package:all_or_nothing_slider/components/constText.dart';
 import 'package:flutter/material.dart';
 import 'mySliderClass.dart';
 void main() => runApp(MyApp());
@@ -8,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: ConstText.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
@@ -68,11 +69,6 @@ class _MyHomeState extends State<MyHome> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             _moveToAddSliderView(context);
-//            _addSlider(context).then((onValue){
-//              setState(() {
-//                _sliderList.add(onValue);
-//              });
-//            });
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
