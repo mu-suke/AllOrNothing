@@ -62,7 +62,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
               ),
               RaisedButton.icon(
                   onPressed: () {
-                    _newSlider.title = _textController.toString();
+                    _newSlider.title = _textController.text.toString();
                     _newSlider.value = _value.toInt();
                     Navigator.of(context).pop(_newSlider);
                   },
