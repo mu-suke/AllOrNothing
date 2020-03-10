@@ -64,11 +64,15 @@ class _AddSliderPageState extends State<AddSliderPage> {
                         Navigator.of(context).pop(_newSlider);
                       }
                     },
+                    color: Colors.lightBlue,
                     icon: Icon(
                       Icons.check_circle_outline,
                       color: Colors.white,
                     ),
-                    label: Text("決定")
+                    label: Text(
+                      "決定",
+                      style: TextStyle(color: Colors.white),
+                    )
                 )
               ],
             ),
