@@ -82,6 +82,11 @@ class _MyHomeState extends State<MyHome> {
                 }
               )
             );
+            if (_newSlider != null) {
+              setState(() {
+                _sliderList.add(_newSlider);
+              });
+            }
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -89,10 +94,6 @@ class _MyHomeState extends State<MyHome> {
       );
     }
   }
-  _moveToAddSliderView(BuildContext context) => Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => AddSliderPage())
-  );
 }
 
 
