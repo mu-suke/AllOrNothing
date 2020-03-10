@@ -10,7 +10,7 @@ class AddSliderPage extends StatefulWidget {
 
 class _AddSliderPageState extends State<AddSliderPage> {
   final MySlider _newSlider = MySlider.newSlider();
-  TextEditingController _textController = TextEditingController();
+  String _title = '';
   double _value = 0.0;
 
   void _changeSlider(double e) => setState(() {
@@ -34,6 +34,9 @@ class _AddSliderPageState extends State<AddSliderPage> {
                       return 'テキストを入力してください。';
                     }
                   },
+                  onChanged: (_formKey) {
+                    _title = _formKey;
+                  },
                 ),
                 Container(
                   padding: const EdgeInsets.all(50.0),
@@ -56,7 +59,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
                 RaisedButton.icon(
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        _newSlider.title = _textController.text.toString();
+                        _newSlider.title = _title;
                         _newSlider.value = _value.toInt();
                         Navigator.of(context).pop(_newSlider);
                       }
