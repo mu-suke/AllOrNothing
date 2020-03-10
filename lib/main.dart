@@ -66,6 +66,7 @@ class _MyHomeState extends State<MyHome> {
     }
     else {
       return Scaffold(
+        appBar: AppBar(title: Text(ConstText.appTitle),),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
