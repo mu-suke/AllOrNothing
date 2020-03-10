@@ -32,6 +32,7 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     if ( _sliderList.isNotEmpty ) {
       return Scaffold(
+        appBar: AppBar(title: Text(ConstText.appTitle),),
         body: Center(
           child: ListView.builder(
             itemCount: _sliderList.length,
