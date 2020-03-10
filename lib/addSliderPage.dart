@@ -1,4 +1,5 @@
 import 'package:all_or_nothing_slider/components/constText.dart';
+import 'package:all_or_nothing_slider/components/myCustomFrom.dart';
 import 'package:all_or_nothing_slider/mySliderClass.dart';
 import 'package:flutter/material.dart';
 import 'mySliderClass.dart';
@@ -38,21 +39,20 @@ class _AddSliderPageState extends State<AddSliderPage> {
               TextField(
                 controller: _textController,
               ),
+              MyCustomForm(),
               Container(
                 padding: const EdgeInsets.all(50.0),
                 child: Column(
                   children: <Widget>[
-                    Center(child: Text("現在の値：$_value")),
-                    Center(child: Text("開始時の値：$_startValue")),
-                    Center(child: Text("終了時の値：$_endValue")),
+                    Center(child: Text("現在の値：${_value.toInt()}")),
                     new Slider(
-                      label: '$_value',
+                      label: '${_value.toInt()}',
                       min: 0,
                       max: 100,
                       value: _value,
                       activeColor: Colors.orange,
                       inactiveColor: Colors.blueAccent,
-                      divisions: 100,
+                      divisions: 20,
                       onChanged: _changeSlider,
                       onChangeStart: _startSlider,
                       onChangeEnd: _endSlider,
