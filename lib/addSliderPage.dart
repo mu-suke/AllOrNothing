@@ -13,19 +13,9 @@ class _AddSliderPageState extends State<AddSliderPage> {
   final MySlider _newSlider = MySlider.newSlider();
   TextEditingController _textController = TextEditingController();
   double _value = 0.0;
-  double _startValue = 0.0;
-  double _endValue = 0.0;
 
   void _changeSlider(double e) => setState(() {
         _value = e;
-      });
-
-  void _startSlider(double e) => setState(() {
-        _startValue = e;
-      });
-
-  void _endSlider(double e) => setState(() {
-        _endValue = e;
       });
 
   @override
@@ -54,8 +44,6 @@ class _AddSliderPageState extends State<AddSliderPage> {
                       inactiveColor: Colors.blueAccent,
                       divisions: 20,
                       onChanged: _changeSlider,
-                      onChangeStart: _startSlider,
-                      onChangeEnd: _endSlider,
                     )
                   ],
                 ),
