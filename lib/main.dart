@@ -1,7 +1,8 @@
-import 'package:all_or_nothing_slider/addSliderPage.dart';
+import 'package:all_or_nothing_slider/pages/addSliderPage.dart';
 import 'package:all_or_nothing_slider/components/constText.dart';
 import 'package:flutter/material.dart';
 import 'components/mySliderClass.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,8 +26,10 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+  var snapshot =  Firestore.instance.collection('users');
   List<MySlider> _sliderList = [
     MySlider(title: 'hogehoge', value: 40, createdAt: DateTime.now()),
+    MySlider(title: Firestore.instance.collection('users').document("test_data").get().toString(), value: 77, createdAt: DateTime.now())
   ];
 
   @override

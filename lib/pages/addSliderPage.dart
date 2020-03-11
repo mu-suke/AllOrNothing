@@ -1,7 +1,7 @@
 import 'package:all_or_nothing_slider/components/constText.dart';
 import 'package:all_or_nothing_slider/components/mySliderClass.dart';
 import 'package:flutter/material.dart';
-import 'components/mySliderClass.dart';
+import '../components/mySliderClass.dart';
 
 class AddSliderPage extends StatefulWidget {
   @override
