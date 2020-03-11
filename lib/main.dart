@@ -1,7 +1,8 @@
 import 'package:all_or_nothing_slider/addSliderPage.dart';
 import 'package:all_or_nothing_slider/components/constText.dart';
 import 'package:flutter/material.dart';
-import 'mySliderClass.dart';
+import 'components/mySliderClass.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -13,11 +14,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home:  MyHome(),
+      home: MyHome(),
     );
   }
 }
-
 
 class MyHome extends StatefulWidget {
   @override
@@ -28,15 +28,18 @@ class _MyHomeState extends State<MyHome> {
   List<MySlider> _sliderList = [
     MySlider(title: 'hogehoge', value: 40),
   ];
+
   @override
   Widget build(BuildContext context) {
-    if ( _sliderList.isNotEmpty ) {
+    if (_sliderList.isNotEmpty) {
       return Scaffold(
-        appBar: AppBar(title: Text(ConstText.appTitle),),
+        appBar: AppBar(
+          title: Text(ConstText.appTitle),
+        ),
         body: Center(
           child: ListView.builder(
             itemCount: _sliderList.length,
-            itemBuilder: (BuildContext context, int index){
+            itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(_sliderList[index].title),
                 subtitle: Text('${_sliderList[index].value}'),
@@ -46,13 +49,10 @@ class _MyHomeState extends State<MyHome> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            final MySlider _newSlider = await Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) {
-                      return AddSliderPage();
-                    }
-                )
-            );
+            final MySlider _newSlider = await Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) {
+              return AddSliderPage();
+            }));
             if (_newSlider != null) {
               setState(() {
                 _sliderList.add(_newSlider);
@@ -63,10 +63,11 @@ class _MyHomeState extends State<MyHome> {
           child: Icon(Icons.add),
         ),
       );
-    }
-    else {
+    } else {
       return Scaffold(
-        appBar: AppBar(title: Text(ConstText.appTitle),),
+        appBar: AppBar(
+          title: Text(ConstText.appTitle),
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -77,13 +78,10 @@ class _MyHomeState extends State<MyHome> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            final MySlider _newSlider = await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return AddSliderPage();
-                }
-              )
-            );
+            final MySlider _newSlider = await Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) {
+              return AddSliderPage();
+            }));
             if (_newSlider != null) {
               setState(() {
                 _sliderList.add(_newSlider);
@@ -97,5 +95,3 @@ class _MyHomeState extends State<MyHome> {
     }
   }
 }
-
-
