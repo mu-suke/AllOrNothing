@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: ConstText.appTitle,
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.lightBlue,
       ),
       home: MyHome(),
     );
@@ -26,7 +26,7 @@ class MyHome extends StatefulWidget {
 
 class _MyHomeState extends State<MyHome> {
   List<MySlider> _sliderList = [
-    MySlider(title: 'hogehoge', value: 40),
+    MySlider(title: 'hogehoge', value: 40, createdAt: DateTime.now()),
   ];
 
   @override
@@ -43,6 +43,11 @@ class _MyHomeState extends State<MyHome> {
               return ListTile(
                 title: Text(_sliderList[index].title),
                 subtitle: Text('${_sliderList[index].value}'),
+                onTap: () {
+                  Scaffold.of(context).showSnackBar(new SnackBar(
+                    content: new Text('Created at ${_sliderList[index].createdAt.toIso8601String()}'),
+                  ));
+                },
               );
             },
           ),

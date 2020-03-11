@@ -13,6 +13,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
   String _title = '';
   double _value = 0.0;
 
+  // TODO: setStateすることによってtitleテキストが初期化される
   void _changeSlider(double e) => setState(() {
         _value = e;
       });
@@ -61,6 +62,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
                     if (_formKey.currentState.validate()) {
                       _newSlider.title = _title;
                       _newSlider.value = _value.toInt();
+                      _newSlider.createdAt = DateTime.now();
                       Navigator.of(context).pop(_newSlider);
                     }
                   },
