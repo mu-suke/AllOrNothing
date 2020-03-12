@@ -46,27 +46,11 @@ class _MyHomeState extends State<MyHome> {
 
   @override
   Widget build(BuildContext context) {
-    if (_sliderList.isNotEmpty) {
-      return Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(ConstText.appTitle),
         ),
-        body: Center(
-          child: ListView.builder(
-            itemCount: _sliderList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(_sliderList[index].title),
-                subtitle: Text('${_sliderList[index].value}'),
-                onTap: () {
-                  Scaffold.of(context).showSnackBar(new SnackBar(
-                    content: new Text('Created at ${_sliderList[index].createdAt.toIso8601String()}'),
-                  ));
-                },
-              );
-            },
-          ),
-        ),
+        body: createListView(),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             final MySlider _newSlider = await Navigator.of(context)
@@ -87,39 +71,34 @@ class _MyHomeState extends State<MyHome> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       );
-    } else {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(ConstText.appTitle),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Slider list is empty."),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            final MySlider _newSlider = await Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) {
-              return AddSliderPage();
-            }));
-            if (_newSlider != null) {
-              setState(() {
-                _sliderList.add(_newSlider);
-              });
-            }
-          },
-          tooltip: 'Increment',
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      );
-    }
+  }
+  createListView() {
+    return StreamBuilder(
+      stream: Firestore.instance.collection('users').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if(snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Text('Loading...');
+          default:
+            return ListView(
+              children: snapshot.data.documents.map((DocumentSnapshot document) {
+                return new ListTile(
+                  title: new Text(document['title']),
+                  subtitle: new Text(document['value'].toString()),
+                  onTap: () {
+                    Scaffold.of(context).showSnackBar(new SnackBar(
+                        content: new Text(document['createdAt'].toString())
+                    ));
+                  },
+                );
+              }).toList(),
+            );
+        }
+      },
+    );
   }
 }
+
