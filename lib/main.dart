@@ -30,11 +30,18 @@ class MyHome extends StatefulWidget {
   _MyHomeState createState() => _MyHomeState();
 }
 
+Future getData(String collection, String documentId, String fieldName) async {
+  DocumentSnapshot docSnapshot =
+  await Firestore.instance.collection(collection).document(documentId).get();
+  Map record = docSnapshot.data;
+  return record[fieldName];
+}
+final snapshot =  getData('users', 'test_data', 'title');
 class _MyHomeState extends State<MyHome> {
-  var snapshot =  Firestore.instance.collection('users');
+
   List<MySlider> _sliderList = [
     MySlider(title: 'hogehoge', value: 40, createdAt: DateTime.now()),
-    MySlider(title: Firestore.instance.collection('users').document("test_data").get().toString(), value: 77, createdAt: DateTime.now())
+    MySlider(title: getData('users', 'test_data', 'title').toString(), value: 77, createdAt: DateTime.now())
   ];
 
   @override
