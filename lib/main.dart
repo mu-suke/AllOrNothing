@@ -90,7 +90,8 @@ class _MyHomeState extends State<MyHome> {
                   subtitle: new Text(document['value'].toString()),
                   onTap: () {
                     Scaffold.of(context).showSnackBar(new SnackBar(
-                        content: new Text(document['createdAt'].toString())
+                      content:  new Text('This slider is created at ${document['createdAt'].toDate().toString()}.'),
+                      duration: Duration(seconds: 1),
                     ));
                   },
                 );
