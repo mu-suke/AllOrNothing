@@ -69,7 +69,7 @@ class _MyHomeState extends State<MyHome> {
   }
   createListView() {
     return StreamBuilder(
-      stream: Firestore.instance.collection('users').snapshots(),
+      stream: Firestore.instance.collection('users').orderBy('createdAt', descending: false).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if(snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
@@ -80,15 +80,27 @@ class _MyHomeState extends State<MyHome> {
           default:
             return ListView(
               children: snapshot.data.documents.map((DocumentSnapshot document) {
-                return new ListTile(
-                  title: new Text(document['title']),
-                  subtitle: new Text(document['value'].toString()),
-                  onTap: () {
-                    Scaffold.of(context).showSnackBar(new SnackBar(
-                      content:  new Text('Created at ${document['createdAt'].toDate().toString()}.'),
-                      duration: Duration(seconds: 1),
-                    ));
-                  },
+                return Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black38)
+                    )
+                  ),
+                  child: new ListTile(
+                    trailing: new Icon(
+                      Icons.fiber_new,
+                      color: Colors.lightBlue,
+                      size: 30,
+                    ),
+                    title: new Text(document['title']),
+                    subtitle: new Text(document['value'].toString()),
+                    onTap: () {
+                      Scaffold.of(context).showSnackBar(new SnackBar(
+                        content:  new Text('Created at ${document['createdAt'].toDate().toString()}.'),
+                        duration: Duration(seconds: 1),
+                      ));
+                    },
+                  ),
                 );
               }).toList(),
             );
