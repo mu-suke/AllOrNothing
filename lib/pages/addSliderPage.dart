@@ -1,5 +1,6 @@
 import 'package:all_or_nothing_slider/components/constText.dart';
 import 'package:all_or_nothing_slider/components/mySliderClass.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../components/mySliderClass.dart';
 
@@ -69,7 +70,12 @@ class _AddSliderPageState extends State<AddSliderPage> {
                       _newSlider.title = _title;
                       _newSlider.value = _value.toInt();
                       _newSlider.createdAt = DateTime.now();
-                      Navigator.of(context).pop(_newSlider);
+                      Firestore.instance.collection('users').add({
+                        'title': _title,
+                        'value': _value.toInt(),
+                        'createdAt': DateTime.now()
+                      });
+                      Navigator.pop(context);
                     }
                   },
                   color: Colors.lightBlue,
