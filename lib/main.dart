@@ -14,6 +14,11 @@ class MyApp extends StatelessWidget {
       title: ConstText.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
+        primaryTextTheme: TextTheme(
+          title: TextStyle(
+            color: Colors.white
+          )
+        )
       ),
       home: MyHome(),
     );
@@ -68,8 +73,12 @@ class _MyHomeState extends State<MyHome> {
             }
           },
           tooltip: 'Increment',
-          child: Icon(Icons.add),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       );
     } else {
       return Scaffold(
@@ -97,8 +106,12 @@ class _MyHomeState extends State<MyHome> {
             }
           },
           tooltip: 'Increment',
-          child: Icon(Icons.add),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
     }
   }

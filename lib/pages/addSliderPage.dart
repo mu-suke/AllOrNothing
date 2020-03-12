@@ -22,7 +22,13 @@ class _AddSliderPageState extends State<AddSliderPage> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: AppBar(title: Text(ConstText.sliderCreateView)),
+      appBar: AppBar(
+          title: Text(ConstText.sliderCreateView),
+          leading: new IconButton(
+              icon: new Icon(Icons.arrow_back, color: Colors.white,),
+              onPressed: () => Navigator.of(context).pop(),
+          ),
+      ),
       body: Form(
         key: _formKey,
         child: Container(
