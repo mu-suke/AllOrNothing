@@ -53,15 +53,10 @@ class _MyHomeState extends State<MyHome> {
         body: createListView(),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            final MySlider _newSlider = await Navigator.of(context)
+            await Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) {
               return AddSliderPage();
             }));
-            if (_newSlider != null) {
-              setState(() {
-                _sliderList.add(_newSlider);
-              });
-            }
           },
           tooltip: 'Increment',
           child: Icon(
@@ -90,7 +85,7 @@ class _MyHomeState extends State<MyHome> {
                   subtitle: new Text(document['value'].toString()),
                   onTap: () {
                     Scaffold.of(context).showSnackBar(new SnackBar(
-                      content:  new Text('This slider is created at ${document['createdAt'].toDate().toString()}.'),
+                      content:  new Text('Created at ${document['createdAt'].toDate().toString()}.'),
                       duration: Duration(seconds: 1),
                     ));
                   },
