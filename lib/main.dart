@@ -109,4 +109,5 @@ class _MyHomeState extends State<MyHome> {
     );
   }
 }
-
+// TODO: 長押しで削除機能
+// TODO: NEWマーク1週間いないのみ表示
