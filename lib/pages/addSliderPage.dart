@@ -15,9 +15,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
   double _value = 0.0;
 
   // TODO: setStateすることによってtitleテキストが初期化される
-  void _changeSlider(double e) => setState(() {
-        _value = e;
-      });
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +49,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
                 child: Column(
                   children: <Widget>[
                     Center(child: Text("現在の値：${_value.toInt()}")),
-                    new Slider(
-                      label: '${_value.toInt()}',
-                      min: 0,
-                      max: 100,
-                      value: _value,
-                      activeColor: Colors.orange,
-                      inactiveColor: Colors.blueAccent,
-                      divisions: 20,
-                      onChanged: _changeSlider,
-                    )
+                    _prioritySlider(),
                   ],
                 ),
               ),
@@ -91,6 +80,22 @@ class _AddSliderPageState extends State<AddSliderPage> {
           ),
         ),
       ),
+    );
+  }
+  Widget _prioritySlider() {
+    return new Slider(
+      label: '${_value.toInt()}',
+      min: 0,
+      max: 100,
+      value: _value,
+      activeColor: Colors.orange,
+      inactiveColor: Colors.lightBlue,
+      divisions: 20,
+      onChanged: (_newValue) {
+        setState(() {
+          _value = _newValue;
+        });
+      },
     );
   }
 }
