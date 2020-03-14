@@ -89,13 +89,10 @@ class _MyHomeState extends State<MyHome> {
                   ),
                   child: new ListTile(
                     trailing: Visibility(
-                      child: Visibility(
-                        visible: true,
-                        child: new Icon(
-                          Icons.fiber_new,
-                          color: Colors.lightBlue,
-                          size: 30,
-                        ),
+                      child: new Icon(
+                        Icons.fiber_new,
+                        color: Colors.lightBlue,
+                        size: 30,
                       ),
                     ),
                     title: new Text(document['title']),
