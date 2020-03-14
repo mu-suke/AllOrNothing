@@ -1,8 +1,9 @@
 import 'package:all_or_nothing_slider/pages/addSliderPage.dart';
 import 'package:all_or_nothing_slider/components/constText.dart';
-import 'package:flutter/material.dart';
 import 'components/mySliderClass.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:timeago/timeago.dart' as timeAgo;
 
 void main() => runApp(MyApp());
 
@@ -87,16 +88,22 @@ class _MyHomeState extends State<MyHome> {
                     )
                   ),
                   child: new ListTile(
-                    trailing: new Icon(
-                      Icons.fiber_new,
-                      color: Colors.lightBlue,
-                      size: 30,
+                    trailing: Visibility(
+                      child: Visibility(
+                        visible: true,
+                        child: new Icon(
+                          Icons.fiber_new,
+                          color: Colors.lightBlue,
+                          size: 30,
+                        ),
+                      ),
                     ),
                     title: new Text(document['title']),
                     subtitle: new Text(document['value'].toString()),
                     onTap: () {
                       Scaffold.of(context).showSnackBar(new SnackBar(
-                        content:  new Text('Created at ${document['createdAt'].toDate().toString()}.'),
+//                        content: new Text('Created at ${timeAgo.format(document['createdAt'].toDate()).toString()}'),
+                        content: new Text(formatDuration(document['createdAt'].toDate())),
                         duration: Duration(seconds: 1),
                       ));
                     },
