@@ -105,8 +105,7 @@ class _MyHomeState extends State<MyHome> {
                     subtitle: new Text(document['value'].toString()),
                     onTap: () {
                       Scaffold.of(context).showSnackBar(new SnackBar(
-//                        content: new Text('Created at ${timeAgo.format(document['createdAt'].toDate()).toString()}'),
-                        content: new Text(document.documentID),
+                        content: new Text('Created at ${timeAgo.format(document['createdAt'].toDate()).toString()}'),
                         duration: Duration(seconds: 1),
                       ));
                     },
@@ -131,8 +130,8 @@ class _MyHomeState extends State<MyHome> {
     return showDialog<bool>(
       context: context,
       builder: (BuildContext context) => new AlertDialog(
-        title: new Text('AlertDialog'),
-        content: new Text('アラートダイアログです。YesかNoを選択してください。'),
+        title: new Text('確認'),
+        content: new Text('削除しますか？'),
         actions: <Widget>[
           new SimpleDialogOption(
             child: new Text('No'),
@@ -160,3 +159,5 @@ bool _isCreatedAtCheck(DateTime createdAt) {
   return _isWithin1week;
 }
 
+// TODO: フォントの変更
+// TODO: サイズ調整
