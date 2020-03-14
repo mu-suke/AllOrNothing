@@ -89,6 +89,7 @@ class _MyHomeState extends State<MyHome> {
                   ),
                   child: new ListTile(
                     trailing: Visibility(
+                      visible: _isCreatedAtCheck(document['createdAt'].toDate()),
                       child: new Icon(
                         Icons.fiber_new,
                         color: Colors.lightBlue,
@@ -99,8 +100,7 @@ class _MyHomeState extends State<MyHome> {
                     subtitle: new Text(document['value'].toString()),
                     onTap: () {
                       Scaffold.of(context).showSnackBar(new SnackBar(
-//                        content: new Text('Created at ${timeAgo.format(document['createdAt'].toDate()).toString()}'),
-                        content: new Text(formatDuration(document['createdAt'].toDate())),
+                        content: new Text('Created at ${timeAgo.format(document['createdAt'].toDate()).toString()}'),
                         duration: Duration(seconds: 1),
                       ));
                     },
@@ -115,3 +115,11 @@ class _MyHomeState extends State<MyHome> {
 }
 // TODO: 長押しで削除機能
 // TODO: NEWマーク1週間以内のみ表示
+
+bool _isCreatedAtCheck(DateTime createdAt) {
+  const _oneWeek2Second = 7 * 24 * 60 * 60;
+  final _createdAtSecond = createdAt.millisecondsSinceEpoch / 1000;
+  final _clockSecond = new DateTime.now().millisecondsSinceEpoch / 1000;
+  final bool _isWithin1week =  _clockSecond - _createdAtSecond < _oneWeek2Second;
+  return _isWithin1week;
+}
