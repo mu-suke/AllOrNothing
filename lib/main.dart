@@ -15,7 +15,14 @@ class MyApp extends StatelessWidget {
       title: ConstText.appTitle,
       theme: ThemeData(
           primarySwatch: Colors.lightBlue,
-          primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white))),
+          fontFamily: 'Quicksand',
+          primaryTextTheme: TextTheme(
+              title: TextStyle(
+                color: Colors.white,
+                fontFamily: 'OpenSans'
+              )
+          )
+      ),
       home: MyHome(),
     );
   }
