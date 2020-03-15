@@ -1,9 +1,11 @@
 import 'package:all_or_nothing_slider/pages/addSliderPage.dart';
 import 'package:all_or_nothing_slider/components/constText.dart';
+import 'package:all_or_nothing_slider/theme.dart';
 import 'components/mySliderClass.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,16 +15,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: ConstText.appTitle,
-      theme: ThemeData(
-          primarySwatch: Colors.lightBlue,
-          fontFamily: 'Quicksand',
-          primaryTextTheme: TextTheme(
-              title: TextStyle(
-                color: Colors.white,
-                fontFamily: 'OpenSans'
-              )
-          )
-      ),
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('ja', 'JP'),
+      ],
       home: MyHome(),
     );
   }
