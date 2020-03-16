@@ -131,17 +131,17 @@ class _MyHomeState extends State<MyHome> {
     return showDialog<bool>(
       context: context,
       builder: (BuildContext context) => new AlertDialog(
-        title: new Text('確認'),
-        content: new Text('削除しますか？'),
+        title: Text('確認'),
+        content: Text('削除しますか？'),
         actions: <Widget>[
-          new SimpleDialogOption(
-            child: new Text('No'),
+          SimpleDialogOption(
+            child: Text('No'),
             onPressed: () {
               Navigator.of(context).pop(false);
             },
           ),
-          new SimpleDialogOption(
-            child: new Text('Yes'),
+          SimpleDialogOption(
+            child: Text('Yes'),
             onPressed: () {
               Navigator.of(context).pop(true);
             },
@@ -155,7 +155,7 @@ class _MyHomeState extends State<MyHome> {
 bool _isCreatedAtCheck(DateTime createdAt) {
   const _oneWeek2Second = 7 * 24 * 60 * 60;
   final _createdAtSecond = createdAt.millisecondsSinceEpoch / 1000;
-  final _clockSecond = new DateTime.now().millisecondsSinceEpoch / 1000;
+  final _clockSecond = DateTime.now().millisecondsSinceEpoch / 1000;
   final bool _isWithin1week = _clockSecond - _createdAtSecond < _oneWeek2Second;
   return _isWithin1week;
 }

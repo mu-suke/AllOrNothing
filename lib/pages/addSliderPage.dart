@@ -23,8 +23,8 @@ class _AddSliderPageState extends State<AddSliderPage> {
     return Scaffold(
       appBar: AppBar(
           title: Text(ConstText.sliderCreateView),
-          leading: new IconButton(
-              icon: new Icon(Icons.arrow_back, color: Colors.white,),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white,),
               onPressed: () => Navigator.of(context).pop(),
           ),
       ),
@@ -83,7 +83,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
     );
   }
   Widget _prioritySlider() {
-    return new Slider(
+    return Slider(
       label: '${_value.toInt()}',
       min: 0,
       max: 100,
