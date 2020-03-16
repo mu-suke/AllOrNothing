@@ -46,13 +46,6 @@ Future getData(String collection, String documentId, String fieldName) async {
 final snapshot = getData('users', 'test_data', 'title');
 
 class _MyHomeState extends State<MyHome> {
-  List<MySlider> _sliderList = [
-    MySlider(title: 'hogehoge', value: 40, createdAt: DateTime.now()),
-    MySlider(
-        title: getData('users', 'test_data', 'title').toString(),
-        value: 77,
-        createdAt: DateTime.now())
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +71,7 @@ class _MyHomeState extends State<MyHome> {
     );
   }
 
-  createListView() {
+  Widget createListView() {
     return StreamBuilder(
       stream: Firestore.instance
           .collection('users')
@@ -134,7 +127,7 @@ class _MyHomeState extends State<MyHome> {
     );
   }
 
-  Future _showDialog() {
+  Future<bool> _showDialog() {
     return showDialog<bool>(
       context: context,
       builder: (BuildContext context) => new AlertDialog(
