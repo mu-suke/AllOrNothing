@@ -1,6 +1,6 @@
 # all_or_nothing_slider
 
-A new Flutter application.
+TODOアプリに優先度スライダーをつけたアプリです。
 
 ## Getting Started
 
