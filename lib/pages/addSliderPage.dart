@@ -82,20 +82,22 @@ class _AddSliderPageState extends State<AddSliderPage> {
       ),
     );
   }
-  Widget _prioritySlider() {
-    return Slider(
-      label: '${_value.toInt()}',
-      min: 0,
-      max: 100,
-      value: _value,
-      activeColor: Colors.orange,
-      inactiveColor: Colors.lightBlue,
-      divisions: 20,
-      onChanged: (_newValue) {
-        setState(() {
-          _value = _newValue;
-        });
-      },
-    );
-  }
+}
+
+class _prioritySlider extends ValueNotifier<TextEditingValue> {
+  final tec = TextEditingController();
+  return Slider(
+    label: '${_value.toInt()}',
+    min: 0,
+    max: 100,
+    value: _value,
+    activeColor: Colors.orange,
+    inactiveColor: Colors.lightBlue,
+    divisions: 20,
+    onChanged: (_newValue) {
+      setState(() {
+        _value = _newValue;
+      });
+    },
+  );
 }
