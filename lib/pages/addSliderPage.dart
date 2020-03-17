@@ -84,8 +84,26 @@ class _AddSliderPageState extends State<AddSliderPage> {
   }
 }
 
+class PrioritySlider extends StatefulWidget {
+  @override
+  _PrioritySliderState createState() => _PrioritySliderState();
+}
+
+class _PrioritySliderState extends State<PrioritySlider> {
+  ValueNotifier<int> sliderChangeNotifier;
+
+  _PrioritySliderState() {
+    sliderChangeNotifier = ValueNotifier<int>(0);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
 class _prioritySlider extends ValueNotifier<TextEditingValue> {
-  final tec = TextEditingController();
   return Slider(
     label: '${_value.toInt()}',
     min: 0,
