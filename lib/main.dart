@@ -1,7 +1,7 @@
 import 'package:all_or_nothing_slider/pages/addSliderPage.dart';
-import 'package:all_or_nothing_slider/components/constText.dart';
-import 'package:all_or_nothing_slider/theme.dart';
-import 'components/mySliderClass.dart';
+import 'package:all_or_nothing_slider/data/constText.dart';
+import 'package:all_or_nothing_slider/data/theme.dart';
+import 'data/mySliderClass.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
