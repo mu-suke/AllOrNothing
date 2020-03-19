@@ -12,7 +12,7 @@ class AddSliderPage extends StatefulWidget {
 class _AddSliderPageState extends State<AddSliderPage> {
   final MySlider _newSlider = MySlider.newSlider();
   String _title = '';
-  double _value = 0.0;
+  double _value = 0;
   ValueNotifier<int> sliderChangeNotifier;
 
   _AddSliderPageState() {
@@ -50,8 +50,14 @@ class _AddSliderPageState extends State<AddSliderPage> {
                 padding: const EdgeInsets.all(50.0),
                 child: Column(
                   children: <Widget>[
-                    Center(child: Text("現在の値：${sliderChangeNotifier.value}")),
-                    PrioritySlider(notifier: sliderChangeNotifier),
+//                    TODO: ColumnごとPrioritySliderに入れちゃう
+                    Center(child: Text("現在の値：$_value")),
+                    PrioritySlider(
+                      notifier: sliderChangeNotifier,
+                      onSubmit: (int val) {
+                        _value = val.toDouble();
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -87,15 +93,19 @@ class _AddSliderPageState extends State<AddSliderPage> {
 }
 
 class PrioritySlider extends StatefulWidget {
+  SliderValueCallback onSubmit;
   ValueNotifier<int> notifier;
-  PrioritySlider({this.notifier}) {
+  PrioritySlider({this.onSubmit, this.notifier}) {
     print("PrioritySlider build");
   }
   @override
   _PrioritySliderState createState() => _PrioritySliderState(notifier: notifier);
 }
 
+typedef void SliderValueCallback(int value);
+
 class _PrioritySliderState extends State<PrioritySlider> {
+
   int _value;
   ValueNotifier<int> notifier;
 
@@ -120,7 +130,8 @@ class _PrioritySliderState extends State<PrioritySlider> {
       divisions: 20,
       onChanged: (_newValue) {
         setState(() {
-          this._value = _newValue.toInt();
+          _value = _newValue.toInt();
+          widget.onSubmit(_value);
         });
       },
     );
