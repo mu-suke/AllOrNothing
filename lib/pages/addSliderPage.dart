@@ -59,7 +59,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       _newSlider.title = _title;
-                      _newSlider.value = _value.toInt();
+                      _newSlider.value = sliderChangeNotifier.value;
                       _newSlider.createdAt = DateTime.now();
                       Firestore.instance.collection('users').add({
                         'title': _title,
