@@ -13,9 +13,11 @@ class _AddSliderPageState extends State<AddSliderPage> {
   final MySlider _newSlider = MySlider.newSlider();
   String _title = '';
   double _value = 0.0;
+  ValueNotifier<int> sliderChangeNotifier;
 
-  // TODO: setStateすることによってtitleテキストが初期化される
-
+  _AddSliderPageState() {
+    sliderChangeNotifier = ValueNotifier<int>(0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +50,8 @@ class _AddSliderPageState extends State<AddSliderPage> {
                 padding: const EdgeInsets.all(50.0),
                 child: Column(
                   children: <Widget>[
-                    Center(child: Text("現在の値：${_value.toInt()}")),
-                    Slider(
-                      label: '${_value.toInt()}',
-                      min: 0,
-                      max: 100,
-                      value: _value,
-                      activeColor: Colors.orange,
-                      inactiveColor: Colors.lightBlue,
-                      divisions: 20,
-                      onChanged: (_newValue) {
-                        setState(() {
-                          _value = _newValue;
-                        });
-                      },
-                    ),
+                    Center(child: Text("現在の値：${sliderChangeNotifier.value}")),
+                    PrioritySlider(notifier: sliderChangeNotifier),
                   ],
                 ),
               ),
@@ -97,20 +86,44 @@ class _AddSliderPageState extends State<AddSliderPage> {
   }
 }
 
-//class _prioritySlider extends ValueNotifier<TextEditingValue> {
-//  final tec = TextEditingController();
-//  return Slider(
-//    label: '${_value.toInt()}',
-//    min: 0,
-//    max: 100,
-//    value: _value,
-//    activeColor: Colors.orange,
-//    inactiveColor: Colors.lightBlue,
-//    divisions: 20,
-//    onChanged: (_newValue) {
-//      setState(() {
-//        _value = _newValue;
-//      });
-//    },
-//  );
-//}
+class PrioritySlider extends StatefulWidget {
+  ValueNotifier<int> notifier;
+  PrioritySlider({this.notifier}) {
+    print("PrioritySlider build");
+  }
+  @override
+  _PrioritySliderState createState() => _PrioritySliderState(notifier: notifier);
+}
+
+class _PrioritySliderState extends State<PrioritySlider> {
+  int _value;
+  ValueNotifier<int> notifier;
+
+  _PrioritySliderState({this.notifier}) {
+    notifier.addListener(() {
+      setState(() {
+        this._value = notifier.value;
+      });
+    });
+    _value = this.notifier.value;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      label: '$_value',
+      min: 0,
+      max: 100,
+      value: _value.toDouble(),
+      activeColor: Colors.orange,
+      inactiveColor: Colors.lightBlue,
+      divisions: 20,
+      onChanged: (_newValue) {
+        setState(() {
+          this._value = _newValue.toInt();
+        });
+      },
+    );
+  }
+}
+// TODO: setStateすることによってtitleテキストが初期化される
