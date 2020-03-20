@@ -2,7 +2,7 @@ import 'package:all_or_nothing_slider/data/constText.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'components/prioritySlider.dart';
+import 'components/slider/prioritySlider.dart';
 
 class AddSliderPage extends StatefulWidget {
   @override
