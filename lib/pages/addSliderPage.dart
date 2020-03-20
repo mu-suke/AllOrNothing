@@ -59,14 +59,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
               RaisedButton.icon(
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      _newSlider.title = _title;
-                      _newSlider.value = sliderChangeNotifier.value;
-                      _newSlider.createdAt = DateTime.now();
-                      Firestore.instance.collection('users').add({
-                        'title': _title,
-                        'value': _value.toInt(),
-                        'createdAt': DateTime.now()
-                      });
+                      _saveTodo(_title, _value, DateTime.now());
                       Navigator.pop(context);
                     }
                   },
@@ -78,7 +71,8 @@ class _AddSliderPageState extends State<AddSliderPage> {
                   label: Text(
                     "決定",
                     style: TextStyle(color: Colors.white),
-                  ))
+                  )
+              )
             ],
           ),
         ),
@@ -87,3 +81,10 @@ class _AddSliderPageState extends State<AddSliderPage> {
   }
 }
 
+void _saveTodo(title, value, createdAt) {
+  Firestore.instance.collection('users').add({
+    'title': title,
+    'value': value.toInt(),
+    'createdAt': DateTime.now()
+  });
+}
