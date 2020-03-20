@@ -1,9 +1,7 @@
 import 'package:all_or_nothing_slider/components/prioritySlider.dart';
 import 'package:all_or_nothing_slider/data/constText.dart';
-import 'package:all_or_nothing_slider/data/mySliderClass.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../data/mySliderClass.dart';
 
 class AddSliderPage extends StatefulWidget {
   @override
@@ -11,7 +9,6 @@ class AddSliderPage extends StatefulWidget {
 }
 
 class _AddSliderPageState extends State<AddSliderPage> {
-  final MySlider _newSlider = MySlider.newSlider();
   String _title = '';
   double _value = 0;
   ValueNotifier<int> sliderChangeNotifier;
