@@ -10,4 +10,4 @@ TODOアプリに優先度スライダーをつけたアプリです。
 
 ## demo
 
-<img src="~/imagesForReadme/demo.gif">
+<img src="/imagesForReadme/demo.gif">
