@@ -1,9 +1,9 @@
-import 'package:all_or_nothing_slider/data/constText.dart';
+import 'package:all_or_nothing_slider/data/const_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:timeago/timeago.dart' as timeAgo;
-import 'addSliderPage.dart';
+import 'add_slider_page.dart';
 
 class MyHome extends StatefulWidget {
   @override

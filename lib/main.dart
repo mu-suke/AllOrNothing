@@ -1,6 +1,6 @@
-import 'package:all_or_nothing_slider/data/constText.dart';
+import 'package:all_or_nothing_slider/data/const_text.dart';
 import 'package:all_or_nothing_slider/data/theme.dart';
-import 'package:all_or_nothing_slider/pages/myHome.dart';
+import 'package:all_or_nothing_slider/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
