@@ -59,15 +59,13 @@ class _MyHomeState extends State<MyHome> {
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return Container(
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(0, 0, 0, 0.6),
-              ),
+            return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
+                  )
                 ],
               ),
             );
@@ -100,8 +98,7 @@ class _MyHomeState extends State<MyHome> {
                     onLongPress: () {
                       _showDialog().then((value) {
                         if(value) {
-                          Firestore.instance.collection('users').document(document.documentID).delete();
-                          print("document deleted");
+                          _deleteTodo(document);
                         }
                       });
                     },
@@ -137,6 +134,7 @@ class _MyHomeState extends State<MyHome> {
       ),
     );
   }
+
 }
 
 bool _isCreatedAtCheck(DateTime createdAt) {
@@ -145,6 +143,10 @@ bool _isCreatedAtCheck(DateTime createdAt) {
   final _clockSecond = DateTime.now().millisecondsSinceEpoch / 1000;
   final bool _isWithin1week = _clockSecond - _createdAtSecond < _oneWeek2Second;
   return _isWithin1week;
+}
+
+void _deleteTodo(DocumentSnapshot document) {
+  Firestore.instance.collection('users').document(document.documentID).delete();
 }
 
 // TODO: フォントの変更
