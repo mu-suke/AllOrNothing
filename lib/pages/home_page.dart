@@ -60,7 +60,7 @@ class _MyHomeState extends State<MyHome> {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
             return Container(
-              decoration: new BoxDecoration(
+              decoration: BoxDecoration(
                 color: Color.fromRGBO(0, 0, 0, 0.6),
               ),
               child: Column(
@@ -79,21 +79,21 @@ class _MyHomeState extends State<MyHome> {
                   decoration: BoxDecoration(
                       border:
                       Border(bottom: BorderSide(color: Colors.black38))),
-                  child: new ListTile(
+                  child: ListTile(
                     trailing: Visibility(
                       visible:
                       _isCreatedAtCheck(document['createdAt'].toDate()),
-                      child: new Icon(
+                      child: Icon(
                         Icons.fiber_new,
                         color: Colors.lightBlue,
                         size: 30,
                       ),
                     ),
-                    title: new Text(document['title']),
-                    subtitle: new Text(document['value'].toString()),
+                    title: Text(document['title']),
+                    subtitle: Text(document['value'].toString()),
                     onTap: () {
-                      Scaffold.of(context).showSnackBar(new SnackBar(
-                        content: new Text('Created at ${timeAgo.format(document['createdAt'].toDate()).toString()}'),
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('Created at ${timeAgo.format(document['createdAt'].toDate()).toString()}'),
                         duration: Duration(seconds: 1),
                       ));
                     },
@@ -117,7 +117,7 @@ class _MyHomeState extends State<MyHome> {
   Future<bool> _showDialog() {
     return showDialog<bool>(
       context: context,
-      builder: (BuildContext context) => new AlertDialog(
+      builder: (BuildContext context) => AlertDialog(
         title: Text('確認'),
         content: Text('削除しますか？'),
         actions: <Widget>[
