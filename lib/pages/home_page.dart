@@ -59,7 +59,18 @@ class _MyHomeState extends State<MyHome> {
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return Text('Loading...');
+            return Container(
+              decoration: new BoxDecoration(
+                color: Color.fromRGBO(0, 0, 0, 0.6),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+                ],
+              ),
+            );
           default:
             return ListView(
               children:
