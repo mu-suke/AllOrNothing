@@ -1,4 +1,5 @@
 import 'package:all_or_nothing_slider/data/const_text.dart';
+import 'package:all_or_nothing_slider/data/todo_list_store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -58,6 +59,7 @@ class _AddSliderPageState extends State<AddSliderPage> {
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       _saveTodo(_title, _value, DateTime.now());
+//                      TodoListStore.saveTodo(_title, _value);
                       Navigator.pop(context);
                     }
                   },
