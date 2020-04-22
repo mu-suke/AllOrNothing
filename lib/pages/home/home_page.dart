@@ -1,9 +1,9 @@
 import 'package:all_or_nothing_slider/data/const_text.dart';
+import 'package:all_or_nothing_slider/pages/add_slider/add_slider_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:timeago/timeago.dart' as timeAgo;
-import 'add_slider_page.dart';
 
 class MyHome extends StatefulWidget {
   @override
@@ -134,7 +134,6 @@ class _MyHomeState extends State<MyHome> {
       ),
     );
   }
-
 }
 
 bool _isCreatedAtCheck(DateTime createdAt) {
@@ -149,6 +148,5 @@ void _deleteTodo(DocumentSnapshot document) {
   Firestore.instance.collection('users').document(document.documentID).delete();
 }
 
-// TODO: フォントの変更
 // TODO: サイズ調整
 // TODO: 文字入力時bottom-overの修正
