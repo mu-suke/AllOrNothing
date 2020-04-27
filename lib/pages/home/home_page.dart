@@ -10,6 +10,17 @@ class MyHome extends StatefulWidget {
   _MyHomeState createState() => _MyHomeState();
 }
 
+Future getData(String collection, String documentId, String fieldName) async {
+  DocumentSnapshot docSnapshot = await Firestore.instance
+      .collection(collection)
+      .document(documentId)
+      .get();
+  Map record = docSnapshot.data;
+  return record[fieldName];
+}
+
+final snapshot = getData('users', 'test_data', 'title');
+
 class _MyHomeState extends State<MyHome> {
 
   @override
