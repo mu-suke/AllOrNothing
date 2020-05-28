@@ -1,28 +1,15 @@
-import 'package:all_or_nothing_slider/data/const_text.dart';
-import 'package:all_or_nothing_slider/pages/add_slider/add_slider_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
+import 'package:all_or_nothing_slider/pages/add_slider/add_slider_page.dart';
+import 'package:all_or_nothing_slider/data/const_text.dart';
 
-class MyHome extends StatefulWidget {
+class TodoDisplay extends StatefulWidget {
   @override
-  _MyHomeState createState() => _MyHomeState();
+  _TodoDisplayState createState() => _TodoDisplayState();
 }
 
-Future getData(String collection, String documentId, String fieldName) async {
-  DocumentSnapshot docSnapshot = await Firestore.instance
-      .collection(collection)
-      .document(documentId)
-      .get();
-  Map record = docSnapshot.data;
-  return record[fieldName];
-}
-
-final snapshot = getData('users', 'test_data', 'title');
-
-class _MyHomeState extends State<MyHome> {
-
+class _TodoDisplayState extends State<TodoDisplay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +38,7 @@ class _MyHomeState extends State<MyHome> {
     return StreamBuilder(
       stream: Firestore.instance
           .collection('users')
-          .orderBy('createdAt', descending: false)
+          .orderBy('createdAt', descending: true)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {

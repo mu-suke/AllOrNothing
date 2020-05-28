@@ -1,6 +1,6 @@
 import 'package:all_or_nothing_slider/data/const_text.dart';
 import 'package:all_or_nothing_slider/data/theme.dart';
-import 'package:all_or_nothing_slider/pages/home/home_page.dart';
+import 'package:all_or_nothing_slider/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('ja', 'JP'),
       ],
-      home: MyHome(),
+      home: RootWidget(),
     );
   }
 }
-
