@@ -1,4 +1,5 @@
-import 'package:all_or_nothing_slider/pages/message/message_display.dart';
+import 'package:all_or_nothing_slider/pages/message/message_room.dart';
+import 'package:all_or_nothing_slider/pages/message/message_route.dart';
 import 'package:all_or_nothing_slider/pages/todo/todo_display.dart';
 import 'package:flutter/material.dart';
 
@@ -15,18 +16,18 @@ class _RootWidgetState extends State<RootWidget> {
 
   static const _footerItems = [
     {
-      'icon': Icons.exposure,
+      'icon': Icons.check_box,
       'name': 'TODO',
     },
     {
-      'icon': Icons.grid_on,
+      'icon': Icons.message,
       'name': 'メッセージ' ,
     }
   ];
 
   var _routes = [
     TodoDisplay(),
-    MessageDisplay()
+    MessageRoute()
   ];
   @override
   void initState() {

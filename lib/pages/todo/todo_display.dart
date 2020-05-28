@@ -14,7 +14,7 @@ class _TodoDisplayState extends State<TodoDisplay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConstText.appTitle),
+        title: Text(ConstText.todoPageTitle),
       ),
       body: createListView(),
       floatingActionButton: FloatingActionButton(
